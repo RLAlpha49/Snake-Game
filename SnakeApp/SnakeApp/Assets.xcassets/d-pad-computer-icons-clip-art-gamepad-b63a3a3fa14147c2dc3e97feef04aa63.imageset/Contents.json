@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "d-pad-computer-icons-clip-art-gamepad-b63a3a3fa14147c2dc3e97feef04aa63.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
