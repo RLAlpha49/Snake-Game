@@ -32,6 +32,11 @@ class ViewController: UIViewController {
     var checkSwitchTimer = Timer()
     var point2xValue = 0
     var speed2xValue = 0
+    var speedCollectedTimer = Timer()
+    var pointCollectedTimer = Timer()
+    var speedCollected = 0
+    var pointCollected = 0
+    var bombCheckTimer = Timer()
     
     var x = 10
     var y = 10
@@ -76,7 +81,9 @@ class ViewController: UIViewController {
    
     @IBOutlet weak var timeLabelOnOff: UILabel!
     
-    @IBOutlet weak var secretButton: UIBarButtonItem!
+    @IBOutlet weak var bomb1: UIImageView!
+    @IBOutlet weak var bomb2: UIImageView!
+    @IBOutlet weak var bomb3: UIImageView!
     
     var playerViewController = AVPlayerViewController()
     var playerview = AVPlayer()
@@ -84,14 +91,51 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        randomXLocation = randomXArray.randomElement()! * 10
-        randomYLocation = randomYArray.randomElement()! * 10
+        randomXRandomY()
         
         finishImageView.center = CGPoint(x: randomXLocation, y:randomYLocation)
         
         characterImage.center = CGPoint(x: x, y: y)
+        
+        if characterImage.center == finishImageView.center
+        {
+            randomXRandomY()
+            
+            finishImageView.center = CGPoint(x: randomXLocation, y:randomYLocation)
+        }
+        
+        randomXRandomY()
+        
+        bomb1.center = CGPoint(x: randomXLocation, y: randomYLocation)
+        
+        if bomb1.center == characterImage.center
+        {
+            randomXRandomY()
+            
+            bomb1.center = CGPoint(x: randomXLocation, y: randomYLocation)
+        }
+        
+        randomXRandomY()
+        
+        bomb2.center = CGPoint(x: randomXLocation, y: randomYLocation)
+        
+        if bomb2.center == characterImage.center
+        {
+            randomXRandomY()
+            
+            bomb1.center = CGPoint(x: randomXLocation, y: randomYLocation)
+        }
+        
+        randomXRandomY()
+        
+        bomb3.center = CGPoint(x: randomXLocation, y: randomYLocation)
+        
+        if bomb3.center == characterImage.center
+        {
+            randomXRandomY()
+            
+            bomb3.center = CGPoint(x: randomXLocation, y: randomYLocation)
+        }
         
         point2xImage.isHidden = true
         point2xImage.center = CGPoint(x: 0, y: 580)
@@ -99,8 +143,114 @@ class ViewController: UIViewController {
         speed2xImage.center = CGPoint(x: 300, y: 580)
         checkDirection()
         check2xSpeed()
+        bombCheckTimerStart()
+    }
+    
+    func bombCheckTimerStart()
+    {
+        bombCheckTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(bombCheckTimerAction), userInfo: nil, repeats: true)
+    }
+    
+    @objc func bombCheckTimerAction()
+    {
+        if characterImage.center == bomb1.center
+        {
+            bombGameOver()
+            print("bomb1 hit")
+            
+            bombCheckTimer.invalidate()
+        }
         
-        //secretButton.isEnabled = false
+        if characterImage.center == bomb2.center
+        {
+            bombGameOver()
+            print("bomb2 hit")
+            
+            bombCheckTimer.invalidate()
+        }
+        
+        if characterImage.center == bomb3.center
+        {
+            bombGameOver()
+            print("bomb3 hit")
+            
+            bombCheckTimer.invalidate()
+        }
+    }
+    
+    func bombGameOver()
+    {
+        print("bombGamerOver Function")
+        
+        gameOverVar = true
+        
+        directionLeft = false
+        directionRight = false
+        directionDown = false
+        directionUp = false
+        
+        gameTimer.invalidate()
+        
+        speed2xImage.isHidden = true
+        point2xImage.isHidden = true
+        
+        if bestScore < currentScore
+        {
+            bestScore = currentScore
+        }
+        
+        let alert = UIAlertController(title: "You Were Bombed\nGame Over", message: "Best Score:\(bestScore)", preferredStyle: UIAlertController.Style.alert)
+        
+        let ok = UIAlertAction(title: "Reset", style: .default)
+        {
+            UIAlertAction in
+            NSLog("Reset Pressed")
+            self.reset()
+        }
+       
+        alert.addAction(ok)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func randomXRandomY()
+    {
+        randomXLocation = randomXArray.randomElement()! * 10
+        randomYLocation = randomYArray.randomElement()! * 10
+    }
+    
+    func speedPowerUpSpawned()
+    {
+        speedCollectedTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(speedPowerUpSpawnedAction), userInfo: nil, repeats: true)
+    }
+    
+    @objc func speedPowerUpSpawnedAction()
+    {
+        speedCollected += 1
+        
+        if speedCollected >= 5
+        {
+            speedCollectedTimer.invalidate()
+            speed2xImage.isHidden = true
+            speed2xImage.center = CGPoint(x: 300, y: 580)
+        }
+    }
+    
+    func pointPowerUpSpawned()
+    {
+        pointCollectedTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(pointPowerUpSpawnedAction), userInfo: nil, repeats: true)
+    }
+    
+    @objc func pointPowerUpSpawnedAction()
+    {
+        pointCollected += 1
+        
+        if pointCollected >= 5
+        {
+            pointCollectedTimer.invalidate()
+            point2xImage.isHidden = true
+            point2xImage.center = CGPoint(x: 0, y: 500)
+        }
     }
     
     @objc func CheckSwitchAction()
@@ -212,7 +362,6 @@ class ViewController: UIViewController {
             {
                 if currentScore >= 2
                 {
-                   // speed2xImage.isHidden = false
                     speed2xMove = true
                 }
             }
@@ -223,9 +372,27 @@ class ViewController: UIViewController {
                 
                 speed2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
                 
+                if speed2xImage.center == characterImage.center
+                {
+                    randomXLocation = randomXArray.randomElement()! * 10
+                    randomYLocation = randomYArray.randomElement()! * 10
+                    
+                    speed2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
+                }
+                
+                if speed2xImage.center == finishImageView.center
+                {
+                    randomXLocation = randomXArray.randomElement()! * 10
+                    randomYLocation = randomYArray.randomElement()! * 10
+                    
+                    speed2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
+                }
+                
                 if speed2xImage.center != CGPoint(x: 0, y: 580)
                 {
                     speed2xMove = false
+                    speed2xImage.isHidden = false
+                    speedPowerUpSpawned()
                 }
                 
                 speed2xValue = 1
@@ -241,7 +408,6 @@ class ViewController: UIViewController {
             {
                 if currentScore >= 8
                 {
-                    //point2xImage.isHidden = false
                     point2xMove = true
                 }
             }
@@ -252,9 +418,27 @@ class ViewController: UIViewController {
                 
                 point2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
                 
+                if point2xImage.center == characterImage.center
+                {
+                    randomXLocation = randomXArray.randomElement()! * 10
+                    randomYLocation = randomYArray.randomElement()! * 10
+                    
+                    point2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
+                }
+                
+                if point2xImage.center == finishImageView.center
+                {
+                    randomXLocation = randomXArray.randomElement()! * 10
+                    randomYLocation = randomYArray.randomElement()! * 10
+                    
+                    point2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
+                }
+                
                 if point2xImage.center != CGPoint(x: 300, y: 580)
                 {
                     point2xMove = false
+                    point2xImage.isHidden = false
+                    pointPowerUpSpawned()
                 }
                 
                 point2xValue = 1
@@ -400,11 +584,6 @@ class ViewController: UIViewController {
             bestScore = currentScore
         }
         
-        if bestScore >= 20
-        {
-            //secretButton.isEnabled = true
-        }
-        
         let alert = UIAlertController(title: "Game Over", message: "Best Score:\(bestScore)", preferredStyle: UIAlertController.Style.alert)
         
         let ok = UIAlertAction(title: "Reset", style: .default)
@@ -421,10 +600,42 @@ class ViewController: UIViewController {
     
     func reset()
     {
-        randomXLocation = randomXArray.randomElement()! * 10
-        randomYLocation = randomYArray.randomElement()! * 10
+        randomXRandomY()
         
         finishImageView.center = CGPoint(x: randomXLocation, y:randomYLocation)
+        
+        randomXRandomY()
+        
+        bomb1.center = CGPoint(x: randomXLocation, y: randomYLocation)
+        
+        if bomb1.center == characterImage.center
+        {
+            randomXRandomY()
+            
+            bomb1.center = CGPoint(x: randomXLocation, y: randomYLocation)
+        }
+        
+        randomXRandomY()
+        
+        bomb2.center = CGPoint(x: randomXLocation, y: randomYLocation)
+        
+        if bomb2.center == characterImage.center
+        {
+            randomXRandomY()
+            
+            bomb1.center = CGPoint(x: randomXLocation, y: randomYLocation)
+        }
+        
+        randomXRandomY()
+        
+        bomb3.center = CGPoint(x: randomXLocation, y: randomYLocation)
+        
+        if bomb3.center == characterImage.center
+        {
+            randomXRandomY()
+            
+            bomb3.center = CGPoint(x: randomXLocation, y: randomYLocation)
+        }
         
         x = 10
         y = 10
@@ -443,12 +654,18 @@ class ViewController: UIViewController {
         speed2xMove = true
         point2x = false
         point2xMove = true
+        speedCollected = 0
+        pointCollected = 0
         
         directionLeft = false
         directionRight = false
         directionDown = false
         directionUp = false
         gameOverVar = false
+        
+        speed2xImage.isHidden = true
+        point2xImage.isHidden = true
+        bombCheckTimerStart()
     }
     
     func direction()
@@ -772,32 +989,26 @@ class ViewController: UIViewController {
     
     @IBAction func secretButton(_ sender: Any)
     {
-        UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+        print("secret pressed")
+        
+        if bestScore >= 20
+        {
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+        }
+        else
+        {
+            let alert = UIAlertController(title: "Not Unlocked", message: "", preferredStyle: UIAlertController.Style.alert)
+            
+            let ok = UIAlertAction(title: "OK", style: .default)
+            {
+                UIAlertAction in
+                NSLog("OK Pressed")
+            }
+    //One Thousand!!!!!!!
+            alert.addAction(ok)
+            
+            present(alert, animated: true, completion: nil)
+        }
     }
-    
-//    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//        let audioSession = AVAudioSession.sharedInstance()
-//        do {
-//            try audioSession.setCategory(.playback, mode: .moviePlayback)
-//        }
-//        catch {
-//            print("Setting category to AVAudioSessionCategoryPlayback failed.")
-//        }
-//        return true
-    
-//        guard let url = URL(string: "https://gfycat.com/waterloggedtanamberpenshell") else {
-//            return
-//        }
-//        // Create an AVPlayer, passing it the HTTP Live Streaming URL.
-//        let player = AVPlayer(url: url)
-//
-//        // Create a new AVPlayerViewController and pass it a reference to the player.
-//        let controller = AVPlayerViewController()
-//        controller.player = player
-//
-//        // Modally present the player and call the player's play() method when complete.
-//        present(controller, animated: true) {
-//            player.play()
-//        }
-    }
+}
 
