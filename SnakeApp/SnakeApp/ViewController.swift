@@ -54,41 +54,37 @@ class ViewController: UIViewController {
     var speed2xMove = false
     var point2x = false
     var point2xMove = false
-    
-    
+   
     var randomXLocation = 0
     var randomYLocation = 0
+   
+    let randomXArray = [1,5,9,13,17,21,25,29]
+    let randomYArray = [1,5,9,13,17,21,25,29,33,37,41,45,49,53,57]
     
     let url = URL(string: "https://gfycat.com/waterloggedtanamberpenshell")
     
-    let randomXArray = [1,5,9,13,17,21,25,29]
-    
-    let randomYArray = [1,5,9,13,17,21,25,29,33,37,41,45,49,53,57]
-    
     @IBOutlet weak var characterImage: UIImageView!
-    
     @IBOutlet weak var finishImageView: UIImageView!
-    
     @IBOutlet weak var point2xImage: UIImageView!
-    
     @IBOutlet weak var speed2xImage: UIImageView!
-    
-    @IBOutlet weak var timeSwitch: UISwitch!
-    
+
     @IBOutlet weak var scoreLabel: UILabel!
-    
     @IBOutlet weak var timeLabel: UILabel!
-   
     @IBOutlet weak var timeLabelOnOff: UILabel!
     
     @IBOutlet weak var bomb1: UIImageView!
     @IBOutlet weak var bomb2: UIImageView!
     @IBOutlet weak var bomb3: UIImageView!
     
+    @IBOutlet weak var timeSwitch: UISwitch!
+    
     var playerViewController = AVPlayerViewController()
     var playerview = AVPlayer()
     
-    override func viewDidLoad() {
+//Start ViewDidLoad
+    
+    override func viewDidLoad() 
+    {
         super.viewDidLoad()
         
         randomXRandomY()
@@ -103,6 +99,7 @@ class ViewController: UIViewController {
             
             finishImageView.center = CGPoint(x: randomXLocation, y:randomYLocation)
         }
+//Start Bomb Placement
         
         randomXRandomY()
         
@@ -137,6 +134,7 @@ class ViewController: UIViewController {
             bomb3.center = CGPoint(x: randomXLocation, y: randomYLocation)
         }
         
+//End Bomb Placement
         point2xImage.isHidden = true
         point2xImage.center = CGPoint(x: 0, y: 580)
         speed2xImage.isHidden = true
@@ -146,9 +144,147 @@ class ViewController: UIViewController {
         bombCheckTimerStart()
     }
     
+//End ViewDidLoad
+//Start Timers
+    
+    func timerStart()
+    {
+        timeStart = true
+        
+        gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(Action), userInfo: nil, repeats: true)
+    }
+    
+    func timerStartSpeed()
+    {
+        timeStartSpeed = true
+        
+        speed2xTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(SpeedAction), userInfo: nil, repeats: true)
+    }
+    
+    func timerStartPoint()
+    {
+        timeStartPoint = true
+        
+        point2xTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(PointAction), userInfo: nil, repeats: true)
+    }
+    
+    func check2xSpeed()
+    {
+        check2xSpeedTimer = Timer.scheduledTimer(timeInterval: 0.20, target: self, selector: #selector(Check2xSpeedAction), userInfo: nil, repeats: true)
+    }
+    
+    func checkDirection()
+    {
+        checkDirectionTimer = Timer.scheduledTimer(timeInterval: 0.40, target: self, selector: #selector(CheckDirectionAction), userInfo: nil, repeats: true)
+    }
+   
+    func speedPowerUpSpawned()
+    {
+        speedCollectedTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(speedPowerUpSpawnedAction), userInfo: nil, repeats: true)
+    }
+    
+    func pointPowerUpSpawned()
+    {
+        pointCollectedTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(pointPowerUpSpawnedAction), userInfo: nil, repeats: true)
+    }
+    
     func bombCheckTimerStart()
     {
         bombCheckTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(bombCheckTimerAction), userInfo: nil, repeats: true)
+    }
+    
+//End Timers
+//Start Timer Actions
+    
+    @objc func Action()
+    {
+        if timeSwitch.isOn == true
+        {
+            timerDisplayed -= 1
+            timeLabel.text = "Time:\(timerDisplayed)"
+           
+            if timerDisplayed == 0
+            {
+                gameOver()
+            }
+            
+            if speed2x == true
+            {
+                speed2xImage.isHidden = true
+            }
+            
+            if point2x == true
+            {
+                point2xImage.isHidden = true
+            }
+        }
+    }
+
+    @objc func SpeedAction()
+    {
+        speed2xPowerUp()
+        
+        if speed2x == true
+        {
+            speed2xTimer.invalidate()
+        }
+    }
+    
+    @objc func PointAction()
+    {
+        point2xPowerUp()
+        
+        if point2x == true
+        {
+            point2xTimer.invalidate()
+        }
+    }
+    
+    @objc func Check2xSpeedAction()
+    {
+        if speed2x == true
+        {
+            speed2xImage.isHidden = true
+            checkDirectionTimer.invalidate()
+            direction()
+        }
+    }
+    
+    @objc func CheckDirectionAction()
+    {
+        direction()
+        
+        if gameOverVar == true
+        {
+            directionUp = false
+            directionDown = false
+            directionLeft = false
+            directionRight = false
+        }
+    }
+    
+    @objc func speedPowerUpSpawnedAction()
+    {
+        speedCollected += 1
+        
+        if speedCollected >= 5
+        {
+            speedCollectedTimer.invalidate()
+            speed2xImage.isHidden = true
+            speed2xImage.center = CGPoint(x: 300, y: 580)
+        }
+    }
+  
+    @objc func pointPowerUpSpawnedAction()
+    {
+        pointCollected += 1
+        
+        if pointCollected >= 5
+        {
+            pointCollectedTimer.invalidate()
+            point2xImage.isHidden = true
+            point2xImage.center = CGPoint(x: 0, y: 500)
+        }
     }
     
     @objc func bombCheckTimerAction()
@@ -178,6 +314,39 @@ class ViewController: UIViewController {
         }
     }
     
+//End Timer Actions
+//Start Functions
+    
+    func gameOver()
+    {
+        gameOverVar = true
+        
+        directionLeft = false
+        directionRight = false
+        directionDown = false
+        directionUp = false
+        
+        gameTimer.invalidate()
+        
+        if bestScore < currentScore
+        {
+            bestScore = currentScore
+        }
+        
+        let alert = UIAlertController(title: "Game Over", message: "Best Score:\(bestScore)", preferredStyle: UIAlertController.Style.alert)
+        
+        let ok = UIAlertAction(title: "Reset", style: .default)
+        {
+            UIAlertAction in
+            NSLog("Reset Pressed")
+            self.reset()
+        }
+       
+        alert.addAction(ok)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     func bombGameOver()
     {
         print("bombGamerOver Function")
@@ -200,391 +369,6 @@ class ViewController: UIViewController {
         }
         
         let alert = UIAlertController(title: "You Were Bombed\nGame Over", message: "Best Score:\(bestScore)", preferredStyle: UIAlertController.Style.alert)
-        
-        let ok = UIAlertAction(title: "Reset", style: .default)
-        {
-            UIAlertAction in
-            NSLog("Reset Pressed")
-            self.reset()
-        }
-       
-        alert.addAction(ok)
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func randomXRandomY()
-    {
-        randomXLocation = randomXArray.randomElement()! * 10
-        randomYLocation = randomYArray.randomElement()! * 10
-    }
-    
-    func speedPowerUpSpawned()
-    {
-        speedCollectedTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(speedPowerUpSpawnedAction), userInfo: nil, repeats: true)
-    }
-    
-    @objc func speedPowerUpSpawnedAction()
-    {
-        speedCollected += 1
-        
-        if speedCollected >= 5
-        {
-            speedCollectedTimer.invalidate()
-            speed2xImage.isHidden = true
-            speed2xImage.center = CGPoint(x: 300, y: 580)
-        }
-    }
-    
-    func pointPowerUpSpawned()
-    {
-        pointCollectedTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(pointPowerUpSpawnedAction), userInfo: nil, repeats: true)
-    }
-    
-    @objc func pointPowerUpSpawnedAction()
-    {
-        pointCollected += 1
-        
-        if pointCollected >= 5
-        {
-            pointCollectedTimer.invalidate()
-            point2xImage.isHidden = true
-            point2xImage.center = CGPoint(x: 0, y: 500)
-        }
-    }
-    
-    @objc func CheckSwitchAction()
-    {
-        print("SwitchTimerOn")
-        if timeSwitch.isOn == true
-        {
-            timeLabelOnOff.text = "Time On"
-        }
-        else
-        {
-            timeLabelOnOff.text = "Time Off"
-        }
-    }
-    
-    func pointAdd()
-    {
-        if characterImage.center == finishImageView.center
-        {
-            randomXLocation = randomXArray.randomElement()! * 10
-            randomYLocation = randomYArray.randomElement()! * 10
-            
-            finishImageView.center = CGPoint(x: randomXLocation, y: randomYLocation)
-            
-            if point2x == false
-            {
-                currentScore += 1
-                scoreLabel.text = "Score:\(currentScore)"
-            }
-            else
-            {
-                point2xImage.isHidden = true
-                currentScore += 2
-                scoreLabel.text = "Score:\(currentScore)"
-            }
-        }
-    }
-    
-    func timerStart()
-    {
-        timeStart = true
-        
-        gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(Action), userInfo: nil, repeats: true)
-    }
-    
-    @objc func Action()
-    {
-        if timeSwitch.isOn == true
-        {
-            timerDisplayed -= 1
-            timeLabel.text = "Time:\(timerDisplayed)"
-           
-            if timerDisplayed == 0
-            {
-                gameOver()
-            }
-            
-            if speed2x == true
-            {
-                speed2xImage.isHidden = true
-            }
-            
-            if point2x == true
-            {
-                point2xImage.isHidden = true
-            }
-        }
-    }
-    
-    func timerStartSpeed()
-    {
-        timeStartSpeed = true
-        
-        speed2xTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(SpeedAction), userInfo: nil, repeats: true)
-    }
-    
-    @objc func SpeedAction()
-    {
-        speed2xPowerUp()
-        
-        if speed2x == true
-        {
-            speed2xTimer.invalidate()
-        }
-    }
-    
-    func timerStartPoint()
-    {
-        timeStartPoint = true
-        
-        point2xTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(PointAction), userInfo: nil, repeats: true)
-    }
-    
-    @objc func PointAction()
-    {
-        point2xPowerUp()
-        
-        if point2x == true
-        {
-            point2xTimer.invalidate()
-        }
-    }
-    
-    func speed2xPowerUp()
-    {
-        if speed2xValue == 0
-        {
-            if speed2xMove == false
-            {
-                if currentScore >= 2
-                {
-                    speed2xMove = true
-                }
-            }
-            else
-            {
-                randomXLocation = randomXArray.randomElement()! * 10
-                randomYLocation = randomYArray.randomElement()! * 10
-                
-                speed2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
-                
-                if speed2xImage.center == characterImage.center
-                {
-                    randomXLocation = randomXArray.randomElement()! * 10
-                    randomYLocation = randomYArray.randomElement()! * 10
-                    
-                    speed2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
-                }
-                
-                if speed2xImage.center == finishImageView.center
-                {
-                    randomXLocation = randomXArray.randomElement()! * 10
-                    randomYLocation = randomYArray.randomElement()! * 10
-                    
-                    speed2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
-                }
-                
-                if speed2xImage.center != CGPoint(x: 0, y: 580)
-                {
-                    speed2xMove = false
-                    speed2xImage.isHidden = false
-                    speedPowerUpSpawned()
-                }
-                
-                speed2xValue = 1
-            }
-        }
-    }
-    
-    func point2xPowerUp()
-    {
-        if point2xValue == 0
-        {
-            if point2xMove == false
-            {
-                if currentScore >= 8
-                {
-                    point2xMove = true
-                }
-            }
-            else
-            {
-                randomXLocation = randomXArray.randomElement()! * 10
-                randomYLocation = randomYArray.randomElement()! * 10
-                
-                point2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
-                
-                if point2xImage.center == characterImage.center
-                {
-                    randomXLocation = randomXArray.randomElement()! * 10
-                    randomYLocation = randomYArray.randomElement()! * 10
-                    
-                    point2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
-                }
-                
-                if point2xImage.center == finishImageView.center
-                {
-                    randomXLocation = randomXArray.randomElement()! * 10
-                    randomYLocation = randomYArray.randomElement()! * 10
-                    
-                    point2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
-                }
-                
-                if point2xImage.center != CGPoint(x: 300, y: 580)
-                {
-                    point2xMove = false
-                    point2xImage.isHidden = false
-                    pointPowerUpSpawned()
-                }
-                
-                point2xValue = 1
-            }
-        }
-    }
-    
-    func speed2xPowerUpActive()
-    {
-        if characterImage.center == speed2xImage.center
-        {
-            if speed2xImage.isHidden == false
-            {
-                speed2xImage.isHidden = true
-                speed2x = true
-                speed2xImage.center = CGPoint(x: 300, y: 580)
-            }
-        }
-    }
-    
-    func point2xPowerUpActive()
-    {
-        if characterImage.center == point2xImage.center
-        {
-            if point2xImage.isHidden == false
-            {
-                point2xImage.isHidden = true
-                point2x = true
-                point2xImage.center = CGPoint(x: 0, y: 580)
-            }
-        }
-    }
-    
-    @IBAction func upButton(_ sender: Any)
-    {
-        directionUp = true
-        directionDown = false
-        directionRight = false
-        directionLeft = false
-        
-        if timeStart == false
-        {
-            timerStart()
-        }
-        
-        if timeStartSpeed == false
-        {
-            timerStartSpeed()
-        }
-        
-        if timeStartPoint == false
-        {
-            timerStartPoint()
-        }
-    }
-    
-    @IBAction func downButton(_ sender: Any)
-    {
-        directionUp = false
-        directionDown = true
-        directionRight = false
-        directionLeft = false
-
-        if timeStart == false
-        {
-            timerStart()
-        }
-        
-        if timeStartSpeed == false
-        {
-            timerStartSpeed()
-        }
-        
-        if timeStartPoint == false
-        {
-            timerStartPoint()
-        }
-    }
-    
-    @IBAction func rightButton(_ sender: Any)
-    {
-        directionUp = false
-        directionDown = false
-        directionRight = true
-        directionLeft = false
-
-        if timeStart == false
-        {
-            timerStart()
-        }
-        
-        if timeStartSpeed == false
-        {
-            timerStartSpeed()
-        }
-        
-        if timeStartPoint == false
-        {
-            timerStartPoint()
-        }
-    }
-    
-    @IBAction func switchTimer(_ sender: Any)
-    {
-        CheckSwitchAction()
-    }
-    @IBAction func leftButton(_ sender: Any)
-    {
-        directionUp = false
-        directionDown = false
-        directionRight = false
-        directionLeft = true
-
-        if timeStart == false
-        {
-            timerStart()
-        }
-        
-        if timeStartSpeed == false
-        {
-            timerStartSpeed()
-        }
-        
-        if timeStartPoint == false
-        {
-            timerStartPoint()
-        }
-    }
-    
-    func gameOver()
-    {
-        gameOverVar = true
-        
-        directionLeft = false
-        directionRight = false
-        directionDown = false
-        directionUp = false
-        
-        gameTimer.invalidate()
-        
-        if bestScore < currentScore
-        {
-            bestScore = currentScore
-        }
-        
-        let alert = UIAlertController(title: "Game Over", message: "Best Score:\(bestScore)", preferredStyle: UIAlertController.Style.alert)
         
         let ok = UIAlertAction(title: "Reset", style: .default)
         {
@@ -644,9 +428,9 @@ class ViewController: UIViewController {
         
         currentScore = 0
         scoreLabel.text = "Score:\(currentScore)"
-        timeStart = false
         timerDisplayed = 60
         timeLabel.text = "Time:\(timerDisplayed)"
+        timeStart = false
         timeStartSpeed = false
         timeStartPoint = false
         
@@ -679,6 +463,7 @@ class ViewController: UIViewController {
             if y <= 15
             {
                 gameOver()
+                
                 directionDown = false
                 directionUp = false
                 directionLeft = false
@@ -703,6 +488,7 @@ class ViewController: UIViewController {
             if y >= 570
             {
                 gameOver()
+                
                 directionDown = false
                 directionUp = false
                 directionLeft = false
@@ -727,6 +513,7 @@ class ViewController: UIViewController {
             if x >= 285
             {
                 gameOver()
+                
                 directionDown = false
                 directionUp = false
                 directionLeft = false
@@ -751,6 +538,7 @@ class ViewController: UIViewController {
             if x <= 15
             {
                 gameOver()
+                
                 directionDown = false
                 directionUp = false
                 directionLeft = false
@@ -767,38 +555,274 @@ class ViewController: UIViewController {
         }
     }
     
-    func check2xSpeed()
+    func randomXRandomY()
     {
-        check2xSpeedTimer = Timer.scheduledTimer(timeInterval: 0.20, target: self, selector: #selector(Check2xSpeedAction), userInfo: nil, repeats: true)
+        randomXLocation = randomXArray.randomElement()! * 10
+        randomYLocation = randomYArray.randomElement()! * 10
     }
     
-    @objc func Check2xSpeedAction()
+    func pointAdd()
     {
-        if speed2x == true
+        if characterImage.center == finishImageView.center
         {
-            speed2xImage.isHidden = true
-            checkDirectionTimer.invalidate()
-            direction()
+            randomXLocation = randomXArray.randomElement()! * 10
+            randomYLocation = randomYArray.randomElement()! * 10
+            
+            finishImageView.center = CGPoint(x: randomXLocation, y: randomYLocation)
+            
+            if point2x == false
+            {
+                currentScore += 1
+                scoreLabel.text = "Score:\(currentScore)"
+            }
+            else
+            {
+                point2xImage.isHidden = true
+                currentScore += 2
+                scoreLabel.text = "Score:\(currentScore)"
+            }
         }
     }
     
-    func checkDirection()
+    func speed2xPowerUp()
     {
-        checkDirectionTimer = Timer.scheduledTimer(timeInterval: 0.40, target: self, selector: #selector(CheckDirectionAction), userInfo: nil, repeats: true)
+        if speed2xValue == 0
+        {
+            if speed2xMove == false
+            {
+                if currentScore >= 2
+                {
+                    speed2xMove = true
+                }
+            }
+            else
+            {
+                randomXRandomY()
+                
+                speed2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
+                
+                if speed2xImage.center == characterImage.center
+                {
+                    randomXRandomY()
+                    
+                    speed2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
+                }
+                
+                if speed2xImage.center == finishImageView.center
+                {
+                    randomXRandomY()
+                    
+                    speed2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
+                }
+                
+                if speed2xImage.center != CGPoint(x: 0, y: 580)
+                {
+                    speed2xMove = false
+                    speed2xImage.isHidden = false
+                    speedPowerUpSpawned()
+                }
+                
+                speed2xValue = 1
+            }
+        }
     }
     
-    @objc func CheckDirectionAction()
+    func point2xPowerUp()
     {
-        direction()
-        
-        if gameOverVar == true
+        if point2xValue == 0
+        {
+            if point2xMove == false
+            {
+                if currentScore >= 8
+                {
+                    point2xMove = true
+                }
+            }
+            else
+            {
+                randomXRandomY()
+                
+                point2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
+                
+                if point2xImage.center == characterImage.center
+                {
+                    randomXRandomY()
+                    
+                    point2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
+                }
+                
+                if point2xImage.center == finishImageView.center
+                {
+                    randomXRandomY()
+                    
+                    point2xImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
+                }
+                
+                if point2xImage.center != CGPoint(x: 300, y: 580)
+                {
+                    point2xMove = false
+                    point2xImage.isHidden = false
+                    pointPowerUpSpawned()
+                }
+                
+                point2xValue = 1
+            }
+        }
+    }
+    
+    func speed2xPowerUpActive()
+    {
+        if characterImage.center == speed2xImage.center
+        {
+            if speed2xImage.isHidden == false
+            {
+                speed2xImage.isHidden = true
+                speed2x = true
+                speed2xImage.center = CGPoint(x: 300, y: 580)
+            }
+        }
+    }
+    
+    func point2xPowerUpActive()
+    {
+        if characterImage.center == point2xImage.center
+        {
+            if point2xImage.isHidden == false
+            {
+                point2xImage.isHidden = true
+                point2x = true
+                point2xImage.center = CGPoint(x: 0, y: 580)
+            }
+        }
+    }
+    
+//End Functions
+//Start @IBAction Functions
+    //Start Directional Pad Buttons
+    
+        @IBAction func upButton(_ sender: Any)
+        {
+            directionUp = true
+            directionDown = false
+            directionRight = false
+            directionLeft = false
+
+            if timeStart == false
+            {
+                timerStart()
+            }
+
+            if timeStartSpeed == false
+            {
+                timerStartSpeed()
+            }
+
+            if timeStartPoint == false
+            {
+                timerStartPoint()
+            }
+        }
+
+        @IBAction func downButton(_ sender: Any)
+        {
+            directionUp = false
+            directionDown = true
+            directionRight = false
+            directionLeft = false
+
+            if timeStart == false
+            {
+                timerStart()
+            }
+
+            if timeStartSpeed == false
+            {
+                timerStartSpeed()
+            }
+
+            if timeStartPoint == false
+            {
+                timerStartPoint()
+            }
+        }
+
+        @IBAction func rightButton(_ sender: Any)
         {
             directionUp = false
             directionDown = false
+            directionRight = true
             directionLeft = false
+
+            if timeStart == false
+            {
+                timerStart()
+            }
+
+            if timeStartSpeed == false
+            {
+                timerStartSpeed()
+            }
+
+            if timeStartPoint == false
+            {
+                timerStartPoint()
+            }
+        }
+
+        @IBAction func switchTimer(_ sender: Any)
+        {
+            CheckSwitchAction()
+        }
+    
+        @IBAction func leftButton(_ sender: Any)
+        {
+            directionUp = false
+            directionDown = false
             directionRight = false
+            directionLeft = true
+
+            if timeStart == false
+            {
+                timerStart()
+            }
+        
+            if timeStartSpeed == false
+            {
+                timerStartSpeed()
+            }
+        
+            if timeStartPoint == false
+            {
+                timerStartPoint()
+            }
+        }
+    
+    //End Directional Pad Buttons
+  
+    @IBAction func secretButton(_ sender: Any)
+    {
+        print("secret pressed")
+        
+        if bestScore >= 20
+        {
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+        }
+        else
+        {
+            let alert = UIAlertController(title: "Not Unlocked", message: "", preferredStyle: UIAlertController.Style.alert)
+            let ok = UIAlertAction(title: "OK", style: .default)
+            {
+                UIAlertAction in
+                NSLog("OK Pressed")
+            }
+            
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
         }
     }
+    
+//End @IBAction Functions
+//Start Arrow Keybinds
     
     override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?)
     {
@@ -841,10 +865,6 @@ class ViewController: UIViewController {
                         directionRight = false
                         directionLeft = true
                     }
-            
-//                    directionRight = false
-//                    directionDown = false
-//                    directionUp = false
                 }
                 
                 didHandleEvent = true
@@ -883,14 +903,9 @@ class ViewController: UIViewController {
                         directionUp = false
                         directionLeft = false
                         directionRight = true
-                    }
-                    
-    //                directionLeft = false
-    //                directionDown = false
-    //                directionUp = false
-                   
+                    } 
                 }
-                
+               
                 didHandleEvent = true
             }
             
@@ -928,10 +943,6 @@ class ViewController: UIViewController {
                         directionRight = false
                         directionUp = true
                     }
-                    
-    //                directionDown = false
-    //                directionLeft = false
-    //                directionRight = false
                 }
                 
                 didHandleEvent = true
@@ -971,44 +982,34 @@ class ViewController: UIViewController {
                         directionRight = false
                         directionDown = true
                     }
-                
-    //                directionUp = false
-    //                directionLeft = false
-    //                directionRight = false
                 }
                 
                 didHandleEvent = true
             }
         }
         
-        if didHandleEvent == false {
-            // Didn't handle this key press, so pass the event to the next responder.
+        if didHandleEvent == false 
+        {
             super.pressesBegan(presses, with: event)
         }
     }
     
-    @IBAction func secretButton(_ sender: Any)
+//End Arrow Keybinds
+//Start Other
+   
+    @objc func CheckSwitchAction()
     {
-        print("secret pressed")
-        
-        if bestScore >= 20
+        print("SwitchTimerOn")
+        if timeSwitch.isOn == true
         {
-            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            timeLabelOnOff.text = "Time On"
         }
         else
         {
-            let alert = UIAlertController(title: "Not Unlocked", message: "", preferredStyle: UIAlertController.Style.alert)
-            
-            let ok = UIAlertAction(title: "OK", style: .default)
-            {
-                UIAlertAction in
-                NSLog("OK Pressed")
-            }
-    //One Thousand!!!!!!!
-            alert.addAction(ok)
-            
-            present(alert, animated: true, completion: nil)
+            timeLabelOnOff.text = "Time Off"
         }
     }
+    
+//End Other  
 }
 
