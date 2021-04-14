@@ -37,6 +37,8 @@ class ViewController: UIViewController {
     var speedCollected = 0
     var pointCollected = 0
     var bombCheckTimer = Timer()
+    var extraLifeTimer =Timer()
+    var extraLife = 0
     
     var x = 10
     var y = 10
@@ -75,6 +77,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var bomb1: UIImageView!
     @IBOutlet weak var bomb2: UIImageView!
     @IBOutlet weak var bomb3: UIImageView!
+    
+    @IBOutlet weak var extraLifeImage: UIImageView!
     
     @IBOutlet weak var timeSwitch: UISwitch!
     
@@ -142,6 +146,7 @@ class ViewController: UIViewController {
         checkDirection()
         check2xSpeed()
         bombCheckTimerStart()
+        extraLifeTimerStart()
     }
     
 //End ViewDidLoad
@@ -191,6 +196,11 @@ class ViewController: UIViewController {
     func bombCheckTimerStart()
     {
         bombCheckTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(bombCheckTimerAction), userInfo: nil, repeats: true)
+    }
+    
+    func extraLifeTimerStart()
+    {
+        extraLifeTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(extraLifeTimerAction), userinfo: nil, repeats: true)
     }
     
 //End Timers
@@ -312,6 +322,11 @@ class ViewController: UIViewController {
             
             bombCheckTimer.invalidate()
         }
+    }
+    
+    @objc func extraLifeTimerAction
+    {
+         
     }
     
 //End Timer Actions
