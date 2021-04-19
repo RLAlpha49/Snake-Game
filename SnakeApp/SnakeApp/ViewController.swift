@@ -4,7 +4,6 @@
 //
 //  Created by Alex Pettigrew.
 //
-
 import UIKit
 import AVKit
 import AVFoundation
@@ -37,8 +36,17 @@ class ViewController: UIViewController {
     var speedCollected = 0
     var pointCollected = 0
     var bombCheckTimer = Timer()
-    var extraLifeTimer =Timer()
+    var extraLifeTimer = Timer()
     var extraLife = 0
+    var extraLife1 = 0
+    var extraLife2 = 0
+    var extraLife3 = 0
+    var extraLife4 = 0
+    var extraLife5 = 0
+    var lost = false
+    var extraLifeLabelTimer = Timer()
+    var extraLifeLost = false
+    var extraLifeLabelOn = 0
     
     var x = 10
     var y = 10
@@ -73,6 +81,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var timeLabelOnOff: UILabel!
+    @IBOutlet weak var extraLifeLabel: UILabel!
     
     @IBOutlet weak var bomb1: UIImageView!
     @IBOutlet weak var bomb2: UIImageView!
@@ -87,7 +96,7 @@ class ViewController: UIViewController {
     
 //Start ViewDidLoad
     
-    override func viewDidLoad() 
+    override func viewDidLoad()
     {
         super.viewDidLoad()
         
@@ -114,6 +123,13 @@ class ViewController: UIViewController {
             randomXRandomY()
             
             bomb1.center = CGPoint(x: randomXLocation, y: randomYLocation)
+            
+            if bomb1.center == characterImage.center
+            {
+                randomXRandomY()
+                
+                bomb1.center = CGPoint(x: randomXLocation, y: randomYLocation)
+            }
         }
         
         randomXRandomY()
@@ -125,6 +141,13 @@ class ViewController: UIViewController {
             randomXRandomY()
             
             bomb1.center = CGPoint(x: randomXLocation, y: randomYLocation)
+            
+            if bomb2.center == characterImage.center
+            {
+                randomXRandomY()
+                
+                bomb1.center = CGPoint(x: randomXLocation, y: randomYLocation)
+            }
         }
         
         randomXRandomY()
@@ -136,6 +159,13 @@ class ViewController: UIViewController {
             randomXRandomY()
             
             bomb3.center = CGPoint(x: randomXLocation, y: randomYLocation)
+            
+            if bomb3.center == characterImage.center
+            {
+                randomXRandomY()
+                
+                bomb3.center = CGPoint(x: randomXLocation, y: randomYLocation)
+            }
         }
         
 //End Bomb Placement
@@ -143,10 +173,13 @@ class ViewController: UIViewController {
         point2xImage.center = CGPoint(x: 0, y: 580)
         speed2xImage.isHidden = true
         speed2xImage.center = CGPoint(x: 300, y: 580)
+        extraLifeImage.isHidden = true
+        extraLifeImage.center = CGPoint(x: 0, y: 580)
         checkDirection()
         check2xSpeed()
         bombCheckTimerStart()
         extraLifeTimerStart()
+        extraLifeLabelTimerStart()
     }
     
 //End ViewDidLoad
@@ -195,12 +228,17 @@ class ViewController: UIViewController {
     
     func bombCheckTimerStart()
     {
-        bombCheckTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(bombCheckTimerAction), userInfo: nil, repeats: true)
+        bombCheckTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(bombCheckTimerAction), userInfo: nil, repeats: true)
     }
     
     func extraLifeTimerStart()
     {
-        extraLifeTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(extraLifeTimerAction), userinfo: nil, repeats: true)
+        extraLifeTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(extraLifeTimerAction), userInfo: nil, repeats: true)
+    }
+    
+    func extraLifeLabelTimerStart()
+    {
+        extraLifeLabelTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(extraLifeLabelTimerAction), userInfo: nil, repeats: true)
     }
     
 //End Timers
@@ -277,7 +315,7 @@ class ViewController: UIViewController {
     {
         speedCollected += 1
         
-        if speedCollected >= 5
+        if speedCollected >= 10
         {
             speedCollectedTimer.invalidate()
             speed2xImage.isHidden = true
@@ -301,32 +339,157 @@ class ViewController: UIViewController {
     {
         if characterImage.center == bomb1.center
         {
-            bombGameOver()
-            print("bomb1 hit")
+            if lost == false
+            {
+                if extraLife == 0
+                {
+                    bombGameOver()
+                    print("bomb1 hit")
+                    
+                    lost = true
+                        
+                    bombCheckTimer.invalidate()
+                }
+            }
             
-            bombCheckTimer.invalidate()
+            extraLife -= 1
+            extraLifeLost = true
+            print("extraLifeLost")
         }
-        
+            
         if characterImage.center == bomb2.center
         {
-            bombGameOver()
-            print("bomb2 hit")
+            if lost == false
+            {
+                if extraLife == 0
+                {
+                    bombGameOver()
+                    print("bomb1 hit")
+                    
+                    lost = true
+                    
+                    bombCheckTimer.invalidate()
+                }
+            }
             
-            bombCheckTimer.invalidate()
+            extraLife -= 1
+            extraLifeLost = true
+            print("extraLifeLost")
         }
         
         if characterImage.center == bomb3.center
         {
-            bombGameOver()
-            print("bomb3 hit")
-            
-            bombCheckTimer.invalidate()
+            if lost == false
+            {
+                if extraLife <= 0
+                {
+                    bombGameOver()
+                    print("bomb1 hit")
+                    
+                    lost = true
+                    
+                    bombCheckTimer.invalidate()
+                }
+            }
+                
+            extraLife -= 1
+            extraLifeLost = true
+            print("extraLifeLost")
         }
     }
     
-    @objc func extraLifeTimerAction
+    @objc func extraLifeTimerAction()
     {
-         
+        if extraLife1 == 0
+        {
+            if currentScore >= 5 && currentScore <= 10
+            {
+                randomXRandomY()
+                
+                extraLifeImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
+                
+                extraLifeImage.isHidden = false
+                
+                extraLife1 += 1
+                print("extraLife1 = 1")
+            }
+        }
+        
+        if extraLife2 == 0
+        {
+            if currentScore >= 10 && currentScore <= 15
+            {
+                randomXRandomY()
+                
+                extraLifeImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
+                
+                extraLifeImage.isHidden = false
+                
+                extraLife2 += 1
+                print("extraLife2 = 1")
+            }
+        }
+        
+        if extraLife3 == 0
+        {
+            if currentScore >= 15 && currentScore <= 20
+            {
+                randomXRandomY()
+                
+                extraLifeImage.center = CGPoint(x: randomXLocation, y: randomYLocation)
+                
+                extraLifeImage.isHidden = false
+                
+                extraLife3 += 1
+                print("extraLife3 = 1")
+            }
+        }
+        
+        if extraLife4 == 0
+        {
+            if currentScore >= 20 && currentScore <= 25
+            {
+                randomXRandomY()
+                
+                extraLifeImage.center = CGPoint(x: randomXLocation, y: y)
+                
+                extraLifeImage.isHidden = false
+                
+                extraLife4 += 1
+                print("extraLife4 = 1")
+            }
+        }
+        
+        if extraLife5 == 0
+        {
+            if currentScore >= 25 && currentScore <= 30
+            {
+                randomXRandomY()
+                
+                extraLifeImage.center = CGPoint(x: x, y: y)
+                
+                extraLifeImage.isHidden = false
+                
+                extraLife5 += 1
+                print("extraLife5 = 1")
+            }
+        }
+    }
+    
+    @objc func extraLifeLabelTimerAction()
+    {
+        if extraLifeLost == true
+        {
+            extraLifeLabel.text = "Life Lost\n\(extraLife) Extra Lives Remaining"
+            
+            extraLifeLabelOn += 1
+        }
+        
+        if extraLifeLabelOn >= 5
+        {
+            extraLifeLabelTimer.invalidate()
+            extraLifeLabel.text = ""
+        }
     }
     
 //End Timer Actions
@@ -464,6 +627,7 @@ class ViewController: UIViewController {
         
         speed2xImage.isHidden = true
         point2xImage.isHidden = true
+        extraLifeImage.isHidden = true
         bombCheckTimerStart()
     }
     
@@ -597,6 +761,27 @@ class ViewController: UIViewController {
                 scoreLabel.text = "Score:\(currentScore)"
             }
         }
+        
+        if characterImage.center == extraLifeImage.center
+        {
+            extraLife += 1
+            print("extraLife Plus 1")
+            
+            extraLifeImage.isHidden = true
+            
+            randomXRandomY()
+            bomb1.center = CGPoint(x: randomXLocation, y: randomYLocation)
+            
+            randomXRandomY()
+            bomb2.center = CGPoint(x: randomXLocation, y: randomYLocation)
+            
+            randomXRandomY()
+            bomb3.center = CGPoint(x: randomXLocation, y: randomYLocation)
+            
+            
+        }
+        
+        
     }
     
     func speed2xPowerUp()
@@ -918,7 +1103,7 @@ class ViewController: UIViewController {
                         directionUp = false
                         directionLeft = false
                         directionRight = true
-                    } 
+                    }
                 }
                
                 didHandleEvent = true
@@ -1003,7 +1188,7 @@ class ViewController: UIViewController {
             }
         }
         
-        if didHandleEvent == false 
+        if didHandleEvent == false
         {
             super.pressesBegan(presses, with: event)
         }
@@ -1026,6 +1211,6 @@ class ViewController: UIViewController {
         }
     }
     
-//End Other  
+//End Other
 }
 
