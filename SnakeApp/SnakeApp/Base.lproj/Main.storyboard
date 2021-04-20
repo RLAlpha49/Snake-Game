@@ -107,6 +107,51 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Itd-Dh-D9D" userLabel="snakeBody2">
+                                        <rect key="frame" x="241" y="40" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Oj1-bf-dnZ" userLabel="snakeBody3">
+                                        <rect key="frame" x="241" y="70" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="SDR-L3-Ipo" userLabel="snakeBody4">
+                                        <rect key="frame" x="241" y="100" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pZg-4q-gqH" userLabel="snakeBody5">
+                                        <rect key="frame" x="241" y="130" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="a4q-bL-C2j" userLabel="snakeBody6">
+                                        <rect key="frame" x="241" y="160" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="v8B-f0-gG9" userLabel="snakeBody7">
+                                        <rect key="frame" x="241" y="189" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ASk-0C-qkD" userLabel="snakeBody8">
+                                        <rect key="frame" x="241" y="219" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2UE-vO-jJi" userLabel="snakeBody9">
+                                        <rect key="frame" x="241" y="249" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IE8-19-uzf" userLabel="snakeBody10">
+                                        <rect key="frame" x="241" y="279" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="linkColor"/>
                             </view>
@@ -230,6 +275,15 @@
                         <outlet property="finishImageView" destination="bwQ-vZ-e2b" id="iKs-zZ-hnQ"/>
                         <outlet property="point2xImage" destination="TbK-8z-utb" id="vQg-14-4Zo"/>
                         <outlet property="scoreLabel" destination="Fpd-ax-IWj" id="2lb-l1-a7h"/>
+                        <outlet property="snakeBody10" destination="IE8-19-uzf" id="zDN-mK-Fmr"/>
+                        <outlet property="snakeBody2" destination="Itd-Dh-D9D" id="4G9-pt-k4s"/>
+                        <outlet property="snakeBody3" destination="Oj1-bf-dnZ" id="2zg-vt-to4"/>
+                        <outlet property="snakeBody4" destination="SDR-L3-Ipo" id="sTx-qW-SYH"/>
+                        <outlet property="snakeBody5" destination="pZg-4q-gqH" id="FeQ-VV-I7b"/>
+                        <outlet property="snakeBody6" destination="a4q-bL-C2j" id="bpf-79-Be5"/>
+                        <outlet property="snakeBody7" destination="v8B-f0-gG9" id="KHh-vh-erZ"/>
+                        <outlet property="snakeBody8" destination="ASk-0C-qkD" id="fCY-rT-lOG"/>
+                        <outlet property="snakeBody9" destination="2UE-vO-jJi" id="9NH-9v-QdD"/>
                         <outlet property="speed2xImage" destination="aP5-P5-R6R" id="07D-1U-Y7V"/>
                         <outlet property="timeLabel" destination="Upz-3k-lLn" id="gnH-wI-XBM"/>
                         <outlet property="timeLabelOnOff" destination="yvc-oB-w24" id="sWs-hc-mQC"/>

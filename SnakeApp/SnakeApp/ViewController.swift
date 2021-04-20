@@ -48,6 +48,17 @@ class ViewController: UIViewController {
     var extraLifeLost = false
     var extraLifeLabelOn = 0
     
+    var snakeLength2 = false
+    var snakeLength3 = false
+    var snakeLength4 = false
+    var snakeLength5 = false
+    var snakeLength6 = false
+    var snakeLength7 = false
+    var snakeLength8 = false
+    var snakeLength9 = false
+    var snakeLength10 = false
+    var checkSnakeLengthTimer = Timer()
+    
     var x = 10
     var y = 10
     
@@ -90,6 +101,34 @@ class ViewController: UIViewController {
     @IBOutlet weak var extraLifeImage: UIImageView!
     
     @IBOutlet weak var timeSwitch: UISwitch!
+    
+    @IBOutlet weak var snakeBody2: UIImageView!
+    var snakeBody2LocationX = 0
+    var snakeBody2LocationY = 0
+    @IBOutlet weak var snakeBody3: UIImageView!
+    var snakeBody3LocationX = 0
+    var snakeBody3LocationY = 0
+    @IBOutlet weak var snakeBody4: UIImageView!
+    var snakeBody4LocationX = 0
+    var snakeBody4LocationY = 0
+    @IBOutlet weak var snakeBody5: UIImageView!
+    var snakeBody5LocationX = 0
+    var snakeBody5LocationY = 0
+    @IBOutlet weak var snakeBody6: UIImageView!
+    var snakeBody6LocationX = 0
+    var snakeBody6LocationY = 0
+    @IBOutlet weak var snakeBody7: UIImageView!
+    var snakeBody7LocationX = 0
+    var snakeBody7LocationY = 0
+    @IBOutlet weak var snakeBody8: UIImageView!
+    var snakeBody8LocationX = 0
+    var snakeBody8LocationY = 0
+    @IBOutlet weak var snakeBody9: UIImageView!
+    var snakeBody9LocationX = 0
+    var snakeBody9LocationY = 0
+    @IBOutlet weak var snakeBody10: UIImageView!
+    var snakeBody10LocationX = 0
+    var snakeBody10LocationY = 0
     
     var playerViewController = AVPlayerViewController()
     var playerview = AVPlayer()
@@ -175,11 +214,31 @@ class ViewController: UIViewController {
         speed2xImage.center = CGPoint(x: 300, y: 580)
         extraLifeImage.isHidden = true
         extraLifeImage.center = CGPoint(x: 0, y: 580)
+        snakeBody2.isHidden = true
+        snakeBody2.center = CGPoint(x: 150, y: 580)
+        snakeBody3.isHidden = true
+        snakeBody3.center = CGPoint(x: 150, y: 580)
+        snakeBody4.isHidden = true
+        snakeBody4.center = CGPoint(x: 150, y: 580)
+        snakeBody5.isHidden = true
+        snakeBody5.center = CGPoint(x: 150, y: 580)
+        snakeBody6.isHidden = true
+        snakeBody6.center = CGPoint(x: 150, y: 580)
+        snakeBody7.isHidden = true
+        snakeBody7.center = CGPoint(x: 150, y: 580)
+        snakeBody8.isHidden = true
+        snakeBody8.center = CGPoint(x: 150, y: 580)
+        snakeBody9.isHidden = true
+        snakeBody9.center = CGPoint(x: 150, y: 580)
+        snakeBody10.isHidden = true
+        snakeBody10.center = CGPoint(x: 150, y: 580)
+        
         checkDirection()
         check2xSpeed()
         bombCheckTimerStart()
         extraLifeTimerStart()
         extraLifeLabelTimerStart()
+        checkSnakeLengthTimerStart()
     }
     
 //End ViewDidLoad
@@ -238,7 +297,12 @@ class ViewController: UIViewController {
     
     func extraLifeLabelTimerStart()
     {
-        extraLifeLabelTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(extraLifeLabelTimerAction), userInfo: nil, repeats: true)
+        extraLifeLabelTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(extraLifeLabelTimerAction), userInfo: nil, repeats: true)
+    }
+    
+    func checkSnakeLengthTimerStart()
+    {
+        checkSnakeLengthTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(checkSnakeLengthAction), userInfo: nil, repeats: true)
     }
     
 //End Timers
@@ -489,6 +553,226 @@ class ViewController: UIViewController {
         {
             extraLifeLabelTimer.invalidate()
             extraLifeLabel.text = ""
+        }
+    }
+    
+    @objc func checkSnakeLengthAction()
+    {
+        if snakeLength2 == true
+        {
+            if speed2x == true
+            {
+                if directionUp == true
+                {
+                    snakeBody2LocationX = x
+                    snakeBody2LocationY = y + 15
+                    snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+                }
+                else
+                {
+                    if directionDown == true
+                    {
+                        snakeBody2LocationX = x
+                        snakeBody2LocationY = y - 15
+                        snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+                    }
+                    else
+                    {
+                        if directionLeft == true
+                        {
+                            snakeBody2LocationX = x + 15
+                            snakeBody2LocationY = y
+                            snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+                        }
+                        else
+                        {
+                            if directionRight == true
+                            {
+                                snakeBody2LocationX = x + 15
+                                snakeBody2LocationY = y
+                                snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if directionUp == true
+                {
+                    snakeBody2LocationX = x
+                    snakeBody2LocationY = y + 15
+                    snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+                }
+                else
+                {
+                    if directionDown == true
+                    {
+                        snakeBody2LocationX = x
+                        snakeBody2LocationY = y - 15
+                        snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+                    }
+                    else
+                    {
+                        if directionLeft == true
+                        {
+                            snakeBody2LocationX = x + 15
+                            snakeBody2LocationY = y
+                            snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+                        }
+                        else
+                        {
+                            if directionRight == true
+                            {
+                                snakeBody2LocationX = x + 15
+                                snakeBody2LocationY = y
+                                snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+                            }
+                        }
+                    }
+                }
+            }
+            snakeBody2.isHidden = false
+        }
+        
+        if snakeLength3 == true
+        {
+            if speed2x == true
+            {
+                if directionUp == true
+                {
+                
+                }
+                
+                if directionDown == true
+                {
+                    
+                }
+                
+                if directionRight == true
+                {
+                    
+                }
+                
+                if directionLeft == true
+                {
+                    
+                }
+            }
+            else
+            {
+                if directionUp == true
+                {
+                
+                }
+                
+                if directionDown == true
+                {
+                    
+                }
+                
+                if directionRight == true
+                {
+                    
+                }
+                
+                if directionLeft == true
+                {
+                    
+                }
+            }
+            snakeBody3.isHidden = false
+        }
+        
+        if snakeLength4 == true
+        {
+            if speed2x == true
+            {
+                
+            }
+            else
+            {
+                
+            }
+            snakeBody4.isHidden = false
+        }
+        
+        if snakeLength5 == true
+        {
+            if speed2x == true
+            {
+                
+            }
+            else
+            {
+                
+            }
+            snakeBody5.isHidden = false
+        }
+        
+        if snakeLength6 == true
+        {
+            if speed2x == true
+            {
+                
+            }
+            else
+            {
+                
+            }
+            snakeBody6.isHidden = false
+        }
+        
+        if snakeLength7 == true
+        {
+            if speed2x == true
+            {
+                
+            }
+            else
+            {
+                
+            }
+            snakeBody7.isHidden = false
+        }
+        
+        if snakeLength8 == true
+        {
+            if speed2x == true
+            {
+                
+            }
+            else
+            {
+                
+            }
+            snakeBody8.isHidden = false
+        }
+        
+        if snakeLength9 == true
+        {
+            if speed2x == true
+            {
+                
+            }
+            else
+            {
+                
+            }
+            snakeBody9.isHidden = false
+        }
+        
+        if snakeLength10 == true
+        {
+            if speed2x == true
+            {
+                
+            }
+            else
+            {
+                
+            }
+            snakeBody10.isHidden = false
         }
     }
     
