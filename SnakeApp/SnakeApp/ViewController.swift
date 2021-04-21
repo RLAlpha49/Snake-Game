@@ -642,7 +642,7 @@ class ViewController: UIViewController {
                 if directionUp == true
                 {
                     snakeBody3LocationX = snakeBody2LocationX
-                    snakeBody3LocationY = snakeBody2LocationY + 40
+                    snakeBody3LocationY = snakeBody2LocationY + 20
                     snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
                 }
                 else
@@ -650,14 +650,14 @@ class ViewController: UIViewController {
                     if directionDown == true
                     {
                         snakeBody3LocationX = snakeBody2LocationX
-                        snakeBody3LocationY = snakeBody2LocationY - 40
+                        snakeBody3LocationY = snakeBody2LocationY - 20
                         snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
                     }
                     else
                     {
                         if directionLeft == true
                         {
-                            snakeBody3LocationX = snakeBody2LocationX + 40
+                            snakeBody3LocationX = snakeBody2LocationX + 20
                             snakeBody3LocationY = snakeBody2LocationY
                             snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
                         }
@@ -665,7 +665,7 @@ class ViewController: UIViewController {
                         {
                             if directionRight == true
                             {
-                                snakeBody3LocationX = snakeBody2LocationX + 40
+                                snakeBody3LocationX = snakeBody2LocationX + 20
                                 snakeBody3LocationY = snakeBody2LocationY
                                 snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
                             }
@@ -677,33 +677,33 @@ class ViewController: UIViewController {
             {
                 if directionUp == true
                 {
-                    snakeBody4LocationX = snakeBody3LocationX
-                    snakeBody4LocationY = snakeBody3LocationY + 60
-                    snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+                    snakeBody3LocationX = snakeBody2LocationX
+                    snakeBody3LocationY = snakeBody2LocationY + 20
+                    snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
                 }
                 else
                 {
                     if directionDown == true
                     {
-                        snakeBody4LocationX = snakeBody3LocationX
-                        snakeBody4LocationY = snakeBody3LocationY - 60
-                        snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+                        snakeBody3LocationX = snakeBody2LocationX
+                        snakeBody3LocationY = snakeBody2LocationY - 20
+                        snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
                     }
                     else
                     {
                         if directionLeft == true
                         {
-                            snakeBody4LocationX = snakeBody3LocationX + 60
-                            snakeBody4LocationY = snakeBody3LocationY
-                            snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+                            snakeBody3LocationX = snakeBody2LocationX + 20
+                            snakeBody3LocationY = snakeBody2LocationY
+                            snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
                         }
                         else
                         {
                             if directionRight == true
                             {
-                                snakeBody4LocationX = snakeBody3LocationX + 60
-                                snakeBody4LocationY = snakeBody3LocationY
-                                snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+                                snakeBody3LocationX = snakeBody2LocationX + 20
+                                snakeBody3LocationY = snakeBody2LocationY
+                                snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
                             }
                         }
                     }
@@ -716,11 +716,75 @@ class ViewController: UIViewController {
         {
             if speed2x == true
             {
-                
+                if directionUp == true
+                {
+                    snakeBody4LocationX = snakeBody3LocationX
+                    snakeBody4LocationY = snakeBody3LocationY + 20
+                    snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+                }
+                else
+                {
+                    if directionDown == true
+                    {
+                        snakeBody4LocationX = snakeBody3LocationX
+                        snakeBody4LocationY = snakeBody3LocationY - 20
+                        snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+                    }
+                    else
+                    {
+                        if directionLeft == true
+                        {
+                            snakeBody4LocationX = snakeBody3LocationX + 20
+                            snakeBody4LocationY = snakeBody3LocationY
+                            snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+                        }
+                        else
+                        {
+                            if directionRight == true
+                            {
+                                snakeBody4LocationX = snakeBody3LocationX + 20
+                                snakeBody4LocationY = snakeBody3LocationY
+                                snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+                            }
+                        }
+                    }
+                }  
             }
             else
             {
-                
+                if directionUp == true
+                {
+                    snakeBody4LocationX = snakeBody3LocationX
+                    snakeBody4LocationY = snakeBody3LocationY + 20
+                    snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+                }
+                else
+                {
+                    if directionDown == true
+                    {
+                        snakeBody4LocationX = snakeBody3LocationX
+                        snakeBody4LocationY = snakeBody3LocationY - 20
+                        snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+                    }
+                    else
+                    {
+                        if directionLeft == true
+                        {
+                            snakeBody4LocationX = snakeBody3LocationX + 20
+                            snakeBody4LocationY = snakeBody3LocationY
+                            snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+                        }
+                        else
+                        {
+                            if directionRight == true
+                            {
+                                snakeBody4LocationX = snakeBody3LocationX + 20
+                                snakeBody4LocationY = snakeBody3LocationY
+                                snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+                            }
+                        }
+                    }
+                } 
             }
             snakeBody4.isHidden = false
         }
@@ -729,11 +793,75 @@ class ViewController: UIViewController {
         {
             if speed2x == true
             {
-                
+                if directionUp == true
+                {
+                    snakeBody5LocationX = snakeBody4LocationX
+                    snakeBody5LocationY = snakeBody4LocationY + 20
+                    snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+                }
+                else
+                {
+                    if directionDown == true
+                    {
+                        snakeBody5LocationX = snakeBody4LocationX
+                        snakeBody5LocationY = snakeBody4LocationY - 20
+                        snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+                    }
+                    else
+                    {
+                        if directionLeft == true
+                        {
+                            snakeBody5LocationX = snakeBody4LocationX + 20
+                            snakeBody5LocationY = snakeBody4LocationY
+                            snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+                        }
+                        else
+                        {
+                            if directionRight == true
+                            {
+                                snakeBody5LocationX = snakeBody4LocationX + 20
+                                snakeBody5LocationY = snakeBody4LocationY
+                                snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+                            }
+                        }
+                    }
+                }  
             }
             else
             {
-                
+                if directionUp == true
+                {
+                    snakeBody5LocationX = snakeBody4LocationX
+                    snakeBody5LocationY = snakeBody4LocationY + 20
+                    snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+                }
+                else
+                {
+                    if directionDown == true
+                    {
+                        snakeBody5LocationX = snakeBody4LocationX
+                        snakeBody5LocationY = snakeBody4LocationY - 20
+                        snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+                    }
+                    else
+                    {
+                        if directionLeft == true
+                        {
+                            snakeBody5LocationX = snakeBody4LocationX + 20
+                            snakeBody5LocationY = snakeBody4LocationY
+                            snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+                        }
+                        else
+                        {
+                            if directionRight == true
+                            {
+                                snakeBody5LocationX = snakeBody4LocationX + 20
+                                snakeBody5LocationY = snakeBody4LocationY
+                                snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+                            }
+                        }
+                    }
+                }  
             }
             snakeBody5.isHidden = false
         }
