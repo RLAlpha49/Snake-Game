@@ -48,61 +48,61 @@ class ViewController: UIViewController {
     var extraLifeLost = false
     var extraLifeLabelOn = 0
     
-    var snakeLength2 = false
-    var snakeLength2Point = 0
-    var snakeLength2DirectionUp = false
-    var snakeLength2DirectionDown = false
-    var snakeLength2DirectionRight = false
-    var snakeLength2DirectionLeft = false
-    var snakeLength3 = false
-    var snakeLength3Point = 0
-    var snakeLength3DirectionUp = false
-    var snakeLength3DirectionDown = false
-    var snakeLength3DirectionRight = false
-    var snakeLength3DirectionLeft = false
-    var snakeLength4 = false
-    var snakeLength4Point = 0
-    var snakeLength4DirectionUp = false
-    var snakeLength4DirectionDown = false
-    var snakeLength4DirectionRight = false
-    var snakeLength4DirectionLeft = false
-    var snakeLength5 = false
-    var snakeLength5Point = 0
-    var snakeLength5DirectionUp = false
-    var snakeLength5DirectionDown = false
-    var snakeLength5DirectionRight = false
-    var snakeLength5DirectionLeft = false
-    var snakeLength6 = false
-    var snakeLength6Point = 0
-    var snakeLength6DirectionUp = false
-    var snakeLength6DirectionDown = false
-    var snakeLength6DirectionRight = false
-    var snakeLength6DirectionLeft = false
-    var snakeLength7 = false
-    var snakeLength7Point = 0
-    var snakeLength7DirectionUp = false
-    var snakeLength7DirectionDown = false
-    var snakeLength7DirectionRight = false
-    var snakeLength7DirectionLeft = false
-    var snakeLength8 = false
-    var snakeLength8Point = 0
-    var snakeLength8DirectionUp = false
-    var snakeLength8DirectionDown = false
-    var snakeLength8DirectionRight = false
-    var snakeLength8DirectionLeft = false
-    var snakeLength9 = false
-    var snakeLength9Point = 0
-    var snakeLength9DirectionUp = false
-    var snakeLength9DirectionDown = false
-    var snakeLength9DirectionRight = false
-    var snakeLength9DirectionLeft = false
-    var snakeLength10 = false
-    var snakeLength10Point = 0
-    var snakeLength10DirectionUp = false
-    var snakeLength10DirectionDown = false
-    var snakeLength10DirectionRight = false
-    var snakeLength10DirectionLeft = false
-    var checkSnakeLengthTimer = Timer()
+//    var snakeLength2 = false
+//    var snakeLength2Point = 0
+//    var snakeLength2DirectionUp = false
+//    var snakeLength2DirectionDown = false
+//    var snakeLength2DirectionRight = false
+//    var snakeLength2DirectionLeft = false
+//    var snakeLength3 = false
+//    var snakeLength3Point = 0
+//    var snakeLength3DirectionUp = false
+//    var snakeLength3DirectionDown = false
+//    var snakeLength3DirectionRight = false
+//    var snakeLength3DirectionLeft = false
+//    var snakeLength4 = false
+//    var snakeLength4Point = 0
+//    var snakeLength4DirectionUp = false
+//    var snakeLength4DirectionDown = false
+//    var snakeLength4DirectionRight = false
+//    var snakeLength4DirectionLeft = false
+//    var snakeLength5 = false
+//    var snakeLength5Point = 0
+//    var snakeLength5DirectionUp = false
+//    var snakeLength5DirectionDown = false
+//    var snakeLength5DirectionRight = false
+//    var snakeLength5DirectionLeft = false
+//    var snakeLength6 = false
+//    var snakeLength6Point = 0
+//    var snakeLength6DirectionUp = false
+//    var snakeLength6DirectionDown = false
+//    var snakeLength6DirectionRight = false
+//    var snakeLength6DirectionLeft = false
+//    var snakeLength7 = false
+//    var snakeLength7Point = 0
+//    var snakeLength7DirectionUp = false
+//    var snakeLength7DirectionDown = false
+//    var snakeLength7DirectionRight = false
+//    var snakeLength7DirectionLeft = false
+//    var snakeLength8 = false
+//    var snakeLength8Point = 0
+//    var snakeLength8DirectionUp = false
+//    var snakeLength8DirectionDown = false
+//    var snakeLength8DirectionRight = false
+//    var snakeLength8DirectionLeft = false
+//    var snakeLength9 = false
+//    var snakeLength9Point = 0
+//    var snakeLength9DirectionUp = false
+//    var snakeLength9DirectionDown = false
+//    var snakeLength9DirectionRight = false
+//    var snakeLength9DirectionLeft = false
+//    var snakeLength10 = false
+//    var snakeLength10Point = 0
+//    var snakeLength10DirectionUp = false
+//    var snakeLength10DirectionDown = false
+//    var snakeLength10DirectionRight = false
+//    var snakeLength10DirectionLeft = false
+//    var checkSnakeLengthTimer = Timer()
     
     var x = 10
     var y = 10
@@ -283,7 +283,7 @@ class ViewController: UIViewController {
         bombCheckTimerStart()
         extraLifeTimerStart()
         extraLifeLabelTimerStart()
-        checkSnakeLengthTimerStart()
+//        checkSnakeLengthTimerStart()
     }
     
 //End ViewDidLoad
@@ -345,10 +345,10 @@ class ViewController: UIViewController {
         extraLifeLabelTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(extraLifeLabelTimerAction), userInfo: nil, repeats: true)
     }
     
-    func checkSnakeLengthTimerStart()
-    {
-        checkSnakeLengthTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(checkSnakeLengthAction), userInfo: nil, repeats: true)
-    }
+//    func checkSnakeLengthTimerStart()
+//    {
+//        checkSnakeLengthTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(checkSnakeLengthAction), userInfo: nil, repeats: true)
+//    }
     
 //End Timers
 //Start Timer Actions
@@ -536,6 +536,8 @@ class ViewController: UIViewController {
                 
                 extraLife2 += 1
                 print("extraLife2 = 1")
+                
+                
             }
         }
         
@@ -601,703 +603,707 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    
+    
+    
     //Start Snake Movement
-    @objc func checkSnakeLengthAction()
-    {
-        if snakeLength2 == true
-        {
-            if speed2x == true
-            {
-                if directionUp == true
-                {
-                    snakeBody2LocationX = x
-                    snakeBody2LocationY = y + 20
-                    snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody2LocationX = x
-                        snakeBody2LocationY = y - 20
-                        snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody2LocationX = x + 20
-                            snakeBody2LocationY = y
-                            snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody2LocationX = x + 20
-                                snakeBody2LocationY = y
-                                snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if directionUp == true
-                {
-                    snakeBody2LocationX = x
-                    snakeBody2LocationY = y + 20
-                    snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody2LocationX = x
-                        snakeBody2LocationY = y - 20
-                        snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody2LocationX = x + 20
-                            snakeBody2LocationY = y
-                            snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody2LocationX = x + 20
-                                snakeBody2LocationY = y
-                                snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            snakeBody2.isHidden = false
-        }
-        
-        if snakeLength3 == true
-        {
-            if speed2x == true
-            {
-                if directionUp == true
-                {
-                    snakeBody3LocationX = snakeBody2LocationX
-                    snakeBody3LocationY = snakeBody2LocationY + 20
-                    snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody3LocationX = snakeBody2LocationX
-                        snakeBody3LocationY = snakeBody2LocationY - 20
-                        snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody3LocationX = snakeBody2LocationX + 20
-                            snakeBody3LocationY = snakeBody2LocationY
-                            snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody3LocationX = snakeBody2LocationX + 20
-                                snakeBody3LocationY = snakeBody2LocationY
-                                snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if directionUp == true
-                {
-                    snakeBody3LocationX = snakeBody2LocationX
-                    snakeBody3LocationY = snakeBody2LocationY + 20
-                    snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody3LocationX = snakeBody2LocationX
-                        snakeBody3LocationY = snakeBody2LocationY - 20
-                        snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody3LocationX = snakeBody2LocationX + 20
-                            snakeBody3LocationY = snakeBody2LocationY
-                            snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody3LocationX = snakeBody2LocationX + 20
-                                snakeBody3LocationY = snakeBody2LocationY
-                                snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            snakeBody3.isHidden = false
-        }
-        
-        if snakeLength4 == true
-        {
-            if speed2x == true
-            {
-                if directionUp == true
-                {
-                    snakeBody4LocationX = snakeBody3LocationX
-                    snakeBody4LocationY = snakeBody3LocationY + 20
-                    snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody4LocationX = snakeBody3LocationX
-                        snakeBody4LocationY = snakeBody3LocationY - 20
-                        snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody4LocationX = snakeBody3LocationX + 20
-                            snakeBody4LocationY = snakeBody3LocationY
-                            snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody4LocationX = snakeBody3LocationX + 20
-                                snakeBody4LocationY = snakeBody3LocationY
-                                snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if directionUp == true
-                {
-                    snakeBody4LocationX = snakeBody3LocationX
-                    snakeBody4LocationY = snakeBody3LocationY + 20
-                    snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody4LocationX = snakeBody3LocationX
-                        snakeBody4LocationY = snakeBody3LocationY - 20
-                        snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody4LocationX = snakeBody3LocationX + 20
-                            snakeBody4LocationY = snakeBody3LocationY
-                            snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody4LocationX = snakeBody3LocationX + 20
-                                snakeBody4LocationY = snakeBody3LocationY
-                                snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            snakeBody4.isHidden = false
-        }
-        
-        if snakeLength5 == true
-        {
-            if speed2x == true
-            {
-                if directionUp == true
-                {
-                    snakeBody5LocationX = snakeBody4LocationX
-                    snakeBody5LocationY = snakeBody4LocationY + 20
-                    snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody5LocationX = snakeBody4LocationX
-                        snakeBody5LocationY = snakeBody4LocationY - 20
-                        snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody5LocationX = snakeBody4LocationX + 20
-                            snakeBody5LocationY = snakeBody4LocationY
-                            snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody5LocationX = snakeBody4LocationX + 20
-                                snakeBody5LocationY = snakeBody4LocationY
-                                snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if directionUp == true
-                {
-                    snakeBody5LocationX = snakeBody4LocationX
-                    snakeBody5LocationY = snakeBody4LocationY + 20
-                    snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody5LocationX = snakeBody4LocationX
-                        snakeBody5LocationY = snakeBody4LocationY - 20
-                        snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody5LocationX = snakeBody4LocationX + 20
-                            snakeBody5LocationY = snakeBody4LocationY
-                            snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody5LocationX = snakeBody4LocationX + 20
-                                snakeBody5LocationY = snakeBody4LocationY
-                                snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            snakeBody5.isHidden = false
-        }
-        
-        if snakeLength6 == true
-        {
-            if speed2x == true
-            {
-                if directionUp == true
-                {
-                    snakeBody6LocationX = snakeBody5LocationX
-                    snakeBody6LocationY = snakeBody5LocationY + 20
-                    snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody6LocationX = snakeBody5LocationX
-                        snakeBody6LocationY = snakeBody5LocationY - 20
-                        snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody6LocationX = snakeBody5LocationX + 20
-                            snakeBody6LocationY = snakeBody5LocationY
-                            snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody6LocationX = snakeBody5LocationX + 20
-                                snakeBody6LocationY = snakeBody5LocationY
-                                snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if directionUp == true
-                {
-                    snakeBody6LocationX = snakeBody5LocationX
-                    snakeBody6LocationY = snakeBody5LocationY + 20
-                    snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody6LocationX = snakeBody5LocationX
-                        snakeBody6LocationY = snakeBody5LocationY - 20
-                        snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody6LocationX = snakeBody5LocationX + 20
-                            snakeBody6LocationY = snakeBody5LocationY
-                            snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody6LocationX = snakeBody5LocationX + 20
-                                snakeBody6LocationY = snakeBody5LocationY
-                                snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            snakeBody6.isHidden = false
-        }
-        
-        if snakeLength7 == true
-        {
-            if speed2x == true
-            {
-                if directionUp == true
-                {
-                    snakeBody7LocationX = snakeBody6LocationX
-                    snakeBody7LocationY = snakeBody6LocationY + 20
-                    snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody7LocationX = snakeBody6LocationX
-                        snakeBody7LocationY = snakeBody6LocationY - 20
-                        snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody7LocationX = snakeBody6LocationX + 20
-                            snakeBody7LocationY = snakeBody6LocationY
-                            snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody7LocationX = snakeBody6LocationX + 20
-                                snakeBody7LocationY = snakeBody6LocationY
-                                snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if directionUp == true
-                {
-                    snakeBody7LocationX = snakeBody6LocationX
-                    snakeBody7LocationY = snakeBody6LocationY + 20
-                    snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody7LocationX = snakeBody6LocationX
-                        snakeBody7LocationY = snakeBody6LocationY - 20
-                        snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
-                    }
-//One Thousand!
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody7LocationX = snakeBody6LocationX + 20
-                            snakeBody7LocationY = snakeBody6LocationY
-                            snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody7LocationX = snakeBody6LocationX + 20
-                                snakeBody7LocationY = snakeBody6LocationY
-                                snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            snakeBody7.isHidden = false
-        }
-        
-        if snakeLength8 == true
-        {
-            if speed2x == true
-            {
-                if directionUp == true
-                {
-                    snakeBody8LocationX = snakeBody7LocationX
-                    snakeBody8LocationY = snakeBody7LocationY + 20
-                    snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody8LocationX = snakeBody7LocationX
-                        snakeBody8LocationY = snakeBody7LocationY - 20
-                        snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody8LocationX = snakeBody7LocationX + 20
-                            snakeBody8LocationY = snakeBody7LocationY
-                            snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody8LocationX = snakeBody7LocationX + 20
-                                snakeBody8LocationY = snakeBody7LocationY
-                                snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if directionUp == true
-                {
-                    snakeBody8LocationX = snakeBody7LocationX
-                    snakeBody8LocationY = snakeBody7LocationY + 20
-                    snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody8LocationX = snakeBody7LocationX
-                        snakeBody8LocationY = snakeBody7LocationY - 20
-                        snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody8LocationX = snakeBody7LocationX + 20
-                            snakeBody8LocationY = snakeBody7LocationY
-                            snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody8LocationX = snakeBody7LocationX + 20
-                                snakeBody8LocationY = snakeBody7LocationY
-                                snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            snakeBody8.isHidden = false
-        }
-        
-        if snakeLength9 == true
-        {
-            if speed2x == true
-            {
-                if directionUp == true
-                {
-                    snakeBody9LocationX = snakeBody8LocationX
-                    snakeBody9LocationY = snakeBody8LocationY + 20
-                    snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody9LocationX = snakeBody8LocationX
-                        snakeBody9LocationY = snakeBody8LocationY - 20
-                        snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody9LocationX = snakeBody8LocationX + 20
-                            snakeBody9LocationY = snakeBody8LocationY
-                            snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody9LocationX = snakeBody8LocationX + 20
-                                snakeBody9LocationY = snakeBody8LocationY
-                                snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if directionUp == true
-                {
-                    snakeBody9LocationX = snakeBody8LocationX
-                    snakeBody9LocationY = snakeBody8LocationY + 20
-                    snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody9LocationX = snakeBody8LocationX
-                        snakeBody9LocationY = snakeBody8LocationY - 20
-                        snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody9LocationX = snakeBody8LocationX + 20
-                            snakeBody9LocationY = snakeBody8LocationY
-                            snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody9LocationX = snakeBody8LocationX + 20
-                                snakeBody9LocationY = snakeBody8LocationY
-                                snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            snakeBody9.isHidden = false
-        }
-        
-        if snakeLength10 == true
-        {
-            if speed2x == true
-            {
-                if directionUp == true
-                {
-                    snakeBody10LocationX = snakeBody9LocationX
-                    snakeBody10LocationY = snakeBody9LocationY + 20
-                    snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody10LocationX = snakeBody9LocationX
-                        snakeBody10LocationY = snakeBody9LocationY - 20
-                        snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody10LocationX = snakeBody9LocationX + 20
-                            snakeBody10LocationY = snakeBody9LocationY
-                            snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody10LocationX = snakeBody9LocationX + 20
-                                snakeBody10LocationY = snakeBody9LocationY
-                                snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if directionUp == true
-                {
-                    snakeBody10LocationX = snakeBody9LocationX
-                    snakeBody10LocationY = snakeBody9LocationY + 20
-                    snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
-                }
-                else
-                {
-                    if directionDown == true
-                    {
-                        snakeBody10LocationX = snakeBody9LocationX
-                        snakeBody10LocationY = snakeBody9LocationY - 20
-                        snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
-                    }
-                    else
-                    {
-                        if directionLeft == true
-                        {
-                            snakeBody10LocationX = snakeBody9LocationX + 20
-                            snakeBody10LocationY = snakeBody9LocationY
-                            snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
-                        }
-                        else
-                        {
-                            if directionRight == true
-                            {
-                                snakeBody10LocationX = snakeBody9LocationX + 20
-                                snakeBody10LocationY = snakeBody9LocationY
-                                snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
-                            }
-                        }
-                    }
-                }
-            }
-            snakeBody10.isHidden = false
-        }
-    }
+//    @objc func checkSnakeLengthAction()
+//    {
+//        if snakeLength2 == true
+//        {
+//            if speed2x == true
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody2LocationX = x
+//                    snakeBody2LocationY = y + 20
+//                    snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody2LocationX = x
+//                        snakeBody2LocationY = y - 20
+//                        snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody2LocationX = x + 20
+//                            snakeBody2LocationY = y
+//                            snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody2LocationX = x + 20
+//                                snakeBody2LocationY = y
+//                                snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            else
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody2LocationX = x
+//                    snakeBody2LocationY = y + 20
+//                    snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody2LocationX = x
+//                        snakeBody2LocationY = y - 20
+//                        snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody2LocationX = x + 20
+//                            snakeBody2LocationY = y
+//                            snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody2LocationX = x + 20
+//                                snakeBody2LocationY = y
+//                                snakeBody2.center = CGPoint(x: snakeBody2LocationX, y: snakeBody2LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            //snakeBody2.isHidden = false
+//        }
+//
+//        if snakeLength3 == true
+//        {
+//            if speed2x == true
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody3LocationX = snakeBody2LocationX
+//                    snakeBody3LocationY = snakeBody2LocationY + 20
+//                    snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody3LocationX = snakeBody2LocationX
+//                        snakeBody3LocationY = snakeBody2LocationY - 20
+//                        snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody3LocationX = snakeBody2LocationX + 20
+//                            snakeBody3LocationY = snakeBody2LocationY
+//                            snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody3LocationX = snakeBody2LocationX + 20
+//                                snakeBody3LocationY = snakeBody2LocationY
+//                                snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            else
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody3LocationX = snakeBody2LocationX
+//                    snakeBody3LocationY = snakeBody2LocationY + 20
+//                    snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody3LocationX = snakeBody2LocationX
+//                        snakeBody3LocationY = snakeBody2LocationY - 20
+//                        snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody3LocationX = snakeBody2LocationX + 20
+//                            snakeBody3LocationY = snakeBody2LocationY
+//                            snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody3LocationX = snakeBody2LocationX + 20
+//                                snakeBody3LocationY = snakeBody2LocationY
+//                                snakeBody3.center = CGPoint(x: snakeBody3LocationX, y: snakeBody3LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            //snakeBody3.isHidden = false
+//        }
+//
+//        if snakeLength4 == true
+//        {
+//            if speed2x == true
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody4LocationX = snakeBody3LocationX
+//                    snakeBody4LocationY = snakeBody3LocationY + 20
+//                    snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody4LocationX = snakeBody3LocationX
+//                        snakeBody4LocationY = snakeBody3LocationY - 20
+//                        snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody4LocationX = snakeBody3LocationX + 20
+//                            snakeBody4LocationY = snakeBody3LocationY
+//                            snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody4LocationX = snakeBody3LocationX + 20
+//                                snakeBody4LocationY = snakeBody3LocationY
+//                                snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            else
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody4LocationX = snakeBody3LocationX
+//                    snakeBody4LocationY = snakeBody3LocationY + 20
+//                    snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody4LocationX = snakeBody3LocationX
+//                        snakeBody4LocationY = snakeBody3LocationY - 20
+//                        snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody4LocationX = snakeBody3LocationX + 20
+//                            snakeBody4LocationY = snakeBody3LocationY
+//                            snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody4LocationX = snakeBody3LocationX + 20
+//                                snakeBody4LocationY = snakeBody3LocationY
+//                                snakeBody4.center = CGPoint(x: snakeBody4LocationX, y: snakeBody4LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            //snakeBody4.isHidden = false
+//        }
+//
+//        if snakeLength5 == true
+//        {
+//            if speed2x == true
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody5LocationX = snakeBody4LocationX
+//                    snakeBody5LocationY = snakeBody4LocationY + 20
+//                    snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody5LocationX = snakeBody4LocationX
+//                        snakeBody5LocationY = snakeBody4LocationY - 20
+//                        snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody5LocationX = snakeBody4LocationX + 20
+//                            snakeBody5LocationY = snakeBody4LocationY
+//                            snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody5LocationX = snakeBody4LocationX + 20
+//                                snakeBody5LocationY = snakeBody4LocationY
+//                                snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            else
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody5LocationX = snakeBody4LocationX
+//                    snakeBody5LocationY = snakeBody4LocationY + 20
+//                    snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody5LocationX = snakeBody4LocationX
+//                        snakeBody5LocationY = snakeBody4LocationY - 20
+//                        snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody5LocationX = snakeBody4LocationX + 20
+//                            snakeBody5LocationY = snakeBody4LocationY
+//                            snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody5LocationX = snakeBody4LocationX + 20
+//                                snakeBody5LocationY = snakeBody4LocationY
+//                                snakeBody5.center = CGPoint(x: snakeBody5LocationX, y: snakeBody5LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            //snakeBody5.isHidden = false
+//        }
+//
+//        if snakeLength6 == true
+//        {
+//            if speed2x == true
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody6LocationX = snakeBody5LocationX
+//                    snakeBody6LocationY = snakeBody5LocationY + 20
+//                    snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody6LocationX = snakeBody5LocationX
+//                        snakeBody6LocationY = snakeBody5LocationY - 20
+//                        snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody6LocationX = snakeBody5LocationX + 20
+//                            snakeBody6LocationY = snakeBody5LocationY
+//                            snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody6LocationX = snakeBody5LocationX + 20
+//                                snakeBody6LocationY = snakeBody5LocationY
+//                                snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            else
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody6LocationX = snakeBody5LocationX
+//                    snakeBody6LocationY = snakeBody5LocationY + 20
+//                    snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody6LocationX = snakeBody5LocationX
+//                        snakeBody6LocationY = snakeBody5LocationY - 20
+//                        snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody6LocationX = snakeBody5LocationX + 20
+//                            snakeBody6LocationY = snakeBody5LocationY
+//                            snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody6LocationX = snakeBody5LocationX + 20
+//                                snakeBody6LocationY = snakeBody5LocationY
+//                                snakeBody6.center = CGPoint(x: snakeBody6LocationX, y: snakeBody6LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            //snakeBody6.isHidden = false
+//        }
+//
+//        if snakeLength7 == true
+//        {
+//            if speed2x == true
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody7LocationX = snakeBody6LocationX
+//                    snakeBody7LocationY = snakeBody6LocationY + 20
+//                    snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody7LocationX = snakeBody6LocationX
+//                        snakeBody7LocationY = snakeBody6LocationY - 20
+//                        snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody7LocationX = snakeBody6LocationX + 20
+//                            snakeBody7LocationY = snakeBody6LocationY
+//                            snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody7LocationX = snakeBody6LocationX + 20
+//                                snakeBody7LocationY = snakeBody6LocationY
+//                                snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            else
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody7LocationX = snakeBody6LocationX
+//                    snakeBody7LocationY = snakeBody6LocationY + 20
+//                    snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody7LocationX = snakeBody6LocationX
+//                        snakeBody7LocationY = snakeBody6LocationY - 20
+//                        snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
+//                    }
+////One Thousand!
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody7LocationX = snakeBody6LocationX + 20
+//                            snakeBody7LocationY = snakeBody6LocationY
+//                            snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody7LocationX = snakeBody6LocationX + 20
+//                                snakeBody7LocationY = snakeBody6LocationY
+//                                snakeBody7.center = CGPoint(x: snakeBody7LocationX, y: snakeBody7LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            //snakeBody7.isHidden = false
+//        }
+//
+//        if snakeLength8 == true
+//        {
+//            if speed2x == true
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody8LocationX = snakeBody7LocationX
+//                    snakeBody8LocationY = snakeBody7LocationY + 20
+//                    snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody8LocationX = snakeBody7LocationX
+//                        snakeBody8LocationY = snakeBody7LocationY - 20
+//                        snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody8LocationX = snakeBody7LocationX + 20
+//                            snakeBody8LocationY = snakeBody7LocationY
+//                            snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody8LocationX = snakeBody7LocationX + 20
+//                                snakeBody8LocationY = snakeBody7LocationY
+//                                snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            else
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody8LocationX = snakeBody7LocationX
+//                    snakeBody8LocationY = snakeBody7LocationY + 20
+//                    snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody8LocationX = snakeBody7LocationX
+//                        snakeBody8LocationY = snakeBody7LocationY - 20
+//                        snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody8LocationX = snakeBody7LocationX + 20
+//                            snakeBody8LocationY = snakeBody7LocationY
+//                            snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody8LocationX = snakeBody7LocationX + 20
+//                                snakeBody8LocationY = snakeBody7LocationY
+//                                snakeBody8.center = CGPoint(x: snakeBody8LocationX, y: snakeBody8LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//           // snakeBody8.isHidden = false
+//        }
+//
+//        if snakeLength9 == true
+//        {
+//            if speed2x == true
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody9LocationX = snakeBody8LocationX
+//                    snakeBody9LocationY = snakeBody8LocationY + 20
+//                    snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody9LocationX = snakeBody8LocationX
+//                        snakeBody9LocationY = snakeBody8LocationY - 20
+//                        snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody9LocationX = snakeBody8LocationX + 20
+//                            snakeBody9LocationY = snakeBody8LocationY
+//                            snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody9LocationX = snakeBody8LocationX + 20
+//                                snakeBody9LocationY = snakeBody8LocationY
+//                                snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            else
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody9LocationX = snakeBody8LocationX
+//                    snakeBody9LocationY = snakeBody8LocationY + 20
+//                    snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody9LocationX = snakeBody8LocationX
+//                        snakeBody9LocationY = snakeBody8LocationY - 20
+//                        snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody9LocationX = snakeBody8LocationX + 20
+//                            snakeBody9LocationY = snakeBody8LocationY
+//                            snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody9LocationX = snakeBody8LocationX + 20
+//                                snakeBody9LocationY = snakeBody8LocationY
+//                                snakeBody9.center = CGPoint(x: snakeBody9LocationX, y: snakeBody9LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            //snakeBody9.isHidden = false
+//        }
+//
+//        if snakeLength10 == true
+//        {
+//            if speed2x == true
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody10LocationX = snakeBody9LocationX
+//                    snakeBody10LocationY = snakeBody9LocationY + 20
+//                    snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody10LocationX = snakeBody9LocationX
+//                        snakeBody10LocationY = snakeBody9LocationY - 20
+//                        snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody10LocationX = snakeBody9LocationX + 20
+//                            snakeBody10LocationY = snakeBody9LocationY
+//                            snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody10LocationX = snakeBody9LocationX + 20
+//                                snakeBody10LocationY = snakeBody9LocationY
+//                                snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            else
+//            {
+//                if directionUp == true
+//                {
+//                    snakeBody10LocationX = snakeBody9LocationX
+//                    snakeBody10LocationY = snakeBody9LocationY + 20
+//                    snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
+//                }
+//                else
+//                {
+//                    if directionDown == true
+//                    {
+//                        snakeBody10LocationX = snakeBody9LocationX
+//                        snakeBody10LocationY = snakeBody9LocationY - 20
+//                        snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
+//                    }
+//                    else
+//                    {
+//                        if directionLeft == true
+//                        {
+//                            snakeBody10LocationX = snakeBody9LocationX + 20
+//                            snakeBody10LocationY = snakeBody9LocationY
+//                            snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
+//                        }
+//                        else
+//                        {
+//                            if directionRight == true
+//                            {
+//                                snakeBody10LocationX = snakeBody9LocationX + 20
+//                                snakeBody10LocationY = snakeBody9LocationY
+//                                snakeBody10.center = CGPoint(x: snakeBody10LocationX, y: snakeBody10LocationY)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+            //snakeBody10.isHidden = false
+//        }
+//    }
     
     //End Snake Movement
     
@@ -1588,86 +1594,86 @@ class ViewController: UIViewController {
             bomb3.center = CGPoint(x: randomXLocation, y: randomYLocation)
         }
         
-        if snakeLength2Point == 0
-        {
-            if currentScore >= 1
-            {
-                snakeLength2 = true
-                snakeLength2Point += 1
-            }
-        }
-        
-        if snakeLength3Point == 0
-        {
-            if currentScore >= 2
-            {
-                snakeLength3 = true
-                snakeLength3Point += 1
-            }
-        }
-        
-        if snakeLength4Point == 0
-        {
-            if currentScore >= 3
-            {
-                snakeLength4 = true
-                snakeLength4Point += 1
-            }
-        }
-        
-        if snakeLength5Point == 0
-        {
-            if currentScore >= 4
-            {
-                snakeLength5 = true
-                snakeLength5Point += 1
-            }
-        }
-        
-        if snakeLength6Point == 0
-        {
-            if currentScore >= 5
-            {
-                snakeLength6 = true
-                snakeLength6Point += 1
-            }
-        }
-        
-        if snakeLength7Point == 0
-        {
-            if currentScore >= 6
-            {
-                snakeLength7 = true
-                snakeLength7Point += 1
-            }
-        }
-        
-        if snakeLength8Point == 0
-        {
-            if currentScore >= 7
-            {
-                snakeLength8 = true
-                snakeLength8Point += 1
-            }
-        }
-        
-        if snakeLength9Point == 0
-        {
-            if currentScore >= 8
-            {
-                snakeLength9 = true
-                snakeLength9Point += 1
-            }
-        }
-        
-        if snakeLength10Point == 0
-        {
-            if currentScore >= 9
-            {
-                snakeLength10 = true
-                snakeLength10Point += 1
-            }
-        }
+//        if snakeLength2Point == 0
+//        {
+//            if currentScore >= 1
+//            {
+//                snakeLength2 = true
+//                snakeLength2Point += 1
+//            }
+//        }
+//
+//        if snakeLength3Point == 0
+//        {
+//            if currentScore >= 2
+//            {
+//                snakeLength3 = true
+//                snakeLength3Point += 1
+//            }
+//        }
+//
+//        if snakeLength4Point == 0
+//        {
+//            if currentScore >= 3
+//            {
+//                snakeLength4 = true
+//                snakeLength4Point += 1
+//            }
+//        }
+//
+//        if snakeLength5Point == 0
+//        {
+//            if currentScore >= 4
+//            {
+//                snakeLength5 = true
+//                snakeLength5Point += 1
+//            }
+//        }
+//
+//        if snakeLength6Point == 0
+//        {
+//            if currentScore >= 5
+//            {
+//                snakeLength6 = true
+//                snakeLength6Point += 1
+//            }
+//        }
+//
+//        if snakeLength7Point == 0
+//        {
+//            if currentScore >= 6
+//            {
+//                snakeLength7 = true
+//                snakeLength7Point += 1
+//            }
+//        }
+//
+//        if snakeLength8Point == 0
+//        {
+//            if currentScore >= 7
+//            {
+//                snakeLength8 = true
+//                snakeLength8Point += 1
+//            }
+//        }
+//
+//        if snakeLength9Point == 0
+//        {
+//            if currentScore >= 8
+//            {
+//                snakeLength9 = true
+//                snakeLength9Point += 1
+//            }
+//        }
+//
+//        if snakeLength10Point == 0
+//        {
+//            if currentScore >= 9
+//            {
+//                snakeLength10 = true
+//                snakeLength10Point += 1
+//            }
+//        }
     }
     
     func speed2xPowerUp()
